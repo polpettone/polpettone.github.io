@@ -1,0 +1,21 @@
+name: poc
+
+run-name: ${{ github.actor }} doing stuff
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout des Codes
+      uses: actions/checkout@v2
+
+    - name: Setze Golang
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.22.3'
+
+    - name: go version
+      run: go version
+
