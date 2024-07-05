@@ -49,7 +49,7 @@ func render(days string) {
 
 
 func main() {
-  from, err := time.Parse("2006-01-02", "2022-09-02")
+  from, err := time.Parse("2006-01-02", "2023-09-02")
   if err != nil {
     log.Fatal(err)
   }
