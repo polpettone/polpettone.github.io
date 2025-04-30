@@ -20,9 +20,19 @@ jobs:
       - name: Build and generate HTML
         run: go run main.go
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3 
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # Das Verzeichnis, in dem `index.html` erstellt wird
-          publish_branch: gh-pages
+          path: build_outputs_folder/
+
+   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
