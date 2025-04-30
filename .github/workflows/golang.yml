@@ -3,7 +3,7 @@ name: Calc days
 on:
   push:
     branches:
-      - main # oder der Branch, der deinen Code hostet
+      - gh-pages # oder der Branch, der deinen Code hostet
 
 jobs:
   build:
