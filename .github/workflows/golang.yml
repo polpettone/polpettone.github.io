@@ -1,18 +1,28 @@
 name: Calc days
 
-on: [push]
+on:
+  push:
+    branches:
+      - main # oder der Branch, der deinen Code hostet
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.22.4
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.22.4
 
-    - name: Run
-      run: go run main.go
+      - name: Build and generate HTML
+        run: go run main.go
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Das Verzeichnis, in dem `index.html` erstellt wird
+          publish_branch: gh-pages
