@@ -34,7 +34,7 @@ func render(days string) {
 
     t := template.Must(template.New("htmlTemplate").Parse(string(tmplContent)))
 
-    file, err := os.Create("index.html")
+    file, err := os.Create("pages/index.html")
 
     if err != nil {
         panic(err)
