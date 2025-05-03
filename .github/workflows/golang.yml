@@ -3,7 +3,16 @@ name: Calc days
 on:
   push:
     branches:
-      - main # oder der Branch, der deinen Code hostet
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -20,18 +29,16 @@ jobs:
       - name: Build and generate HTML
         run: go run main.go
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: debug/
+          path: ./pages/
 
   deploy:
-    permissions:
-      contents: write # Erlaubt Lese- und Schreibzugriff auf Repository-Inhalte
-      pages: write # Erforderlich für das Deployment auf GitHub Pages
-      id-token: write # Optional: Erforderlich für OIDC-Token (z. B. für Cloud-Authentifizierung)
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
