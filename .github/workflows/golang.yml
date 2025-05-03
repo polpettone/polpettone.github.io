@@ -15,10 +15,10 @@ jobs:
       id-token: write # Optional: Erforderlich für OIDC-Token (z. B. für Cloud-Authentifizierung)
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
           go-version: 1.22.4
 
