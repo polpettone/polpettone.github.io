@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: write # Erlaubt Lese- und Schreibzugriff auf Repository-Inhalte
       pages: write # Erforderlich für das Deployment auf GitHub Pages
+      id-token: write # Optional: Erforderlich für OIDC-Token (z. B. für Cloud-Authentifizierung)
 
     steps:
       - uses: actions/checkout@v2
