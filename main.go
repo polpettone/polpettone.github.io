@@ -148,8 +148,11 @@ func main() {
 		return
 	}
 
+	// need to calculate the streak distance here manually due the api does not provide the total distance of the longest streak
+	totalDistanceUntilStreakStart := 4257
+
 	days := runningStats.LongestStreak
-	totalDistance := int(runningStats.TotalDistance)
+	totalDistance := int(runningStats.TotalDistance) - totalDistanceUntilStreakStart
 	totalDistanceStr := strconv.Itoa(totalDistance)
 
 	fmt.Printf("%d \n", totalDistance)
