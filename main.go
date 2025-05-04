@@ -8,14 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"time"
 )
-
-func calcDays(from, to time.Time) int {
-	duration := to.Sub(from)
-	days := int(duration.Hours() / 24)
-	return days
-}
 
 func render_days(days string) {
 	templateFile := "templates/days-keyboard.html"
@@ -152,6 +145,7 @@ func main() {
 
 	if err != nil {
 		fmt.Printf("%s", err)
+		return
 	}
 
 	days := runningStats.LongestStreak
