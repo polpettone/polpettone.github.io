@@ -155,6 +155,7 @@ func main() {
 	totalDistance := int(runningStats.TotalDistance) - totalDistanceUntilStreakStart
 	totalDistanceStr := strconv.Itoa(totalDistance)
 
+	fmt.Printf("%f \n", runningStats.TotalDistance)
 	fmt.Printf("%d \n", totalDistance)
 	fmt.Printf("%d \n", days)
 
