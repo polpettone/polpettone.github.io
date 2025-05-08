@@ -76,6 +76,28 @@ func render_kilometer(kilometers string) {
 	}
 }
 
+func render_streak() {
+	templateFile := "templates/streak.html"
+	tmplContent, err := os.ReadFile(templateFile)
+	if err != nil {
+		panic(err)
+	}
+
+	t := template.Must(template.New("htmlTemplate").Parse(string(tmplContent)))
+
+	file, err := os.Create("pages/streak.html")
+
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	err = t.Execute(file, nil)
+	if err != nil {
+		panic(err)
+	}
+
+}
 func fetchAPIData(url string) (string, error) {
 	resp, err := http.Get(url)
 	if err != nil {
@@ -161,4 +183,5 @@ func main() {
 
 	render_days(strconv.Itoa(days))
 	render_kilometer(totalDistanceStr)
+	render_streak()
 }
