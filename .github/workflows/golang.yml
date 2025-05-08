@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 6 * * *" # Täglich um 6:00 Uhr
+    - cron: "0 12 * * *" # Täglich um 12:00 Uhr
+    - cron: "0 22 * * *" # Täglich um 22:00 Uhr
 
 permissions:
   contents: read
